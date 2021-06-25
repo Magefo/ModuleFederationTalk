@@ -1,5 +1,9 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import App from './App';
+import React from "react";
+import ReactDom from "react-dom";
+import HomeApp from "./HomeApp";
 
-ReactDom.render(<App />, document.querySelector('#root'));
+const mount = (el) => {
+  ReactDom.render(<HomeApp />, el);
+};
+
+export { mount };

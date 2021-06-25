@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -19,6 +20,12 @@ module.exports = {
             patterns: [
                 {from: 'src/assets', to: 'assets'}
             ]
+        }),
+        new ModuleFederationPlugin({
+            name: 'shell',
+            remotes: {
+                home: 'homeApp@http://localhost:4201/remoteEntry.js',
+            }
         })
     ],
     resolve: {
